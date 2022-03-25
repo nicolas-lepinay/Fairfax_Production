@@ -29,13 +29,13 @@ function App() {
     const DefaultRoutes = () => {
         const [socket, setSocket] = useState(null);
     
-        // 🔌 Socket.io :
+        // 🔌 Socket.io:
         useEffect(() => {
             setSocket(io("ws://https://the-wizards-of-fairfax-sockets.herokuapp.com/"));
         }, [])
     
         useEffect(() => {
-            // Envoi de l'ID du user loggé au socket server :
+            // Envoi de l'ID du user loggé au socket server:
             user && socket?.emit("NOTIFICATIONS_addUser", user?._id);
             user && socket?.emit("MESSENGER_addUser", user?._id); 
           }, [socket, user]);
