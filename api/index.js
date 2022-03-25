@@ -6,13 +6,6 @@ const morgan = require("morgan"); // Pour les logs et résultats des requêtes
 const multer = require("multer"); // Pour l'upload d'images
 const path = require("path");
 
-// SOCKETS :
-const portSocket = 9000;
-//const URL = 'http://localhost:3000';
-const io = require('socket.io')(portSocket, { cors: { origin: "*" }}); // Remplacer "*" par URL ?
-const messenger = require('./messenger');
-const notifications = require('./notifications');
-
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
 const postRoute = require("./routes/posts")
@@ -49,9 +42,11 @@ app.use("/api/messages", messageRoute);
 app.use("/api/categories", categoryRoute);
 app.use("/api/upload", uploadRoute);
 
-// SOCKETS :
-messenger.start(io);
-notifications.start(io);
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
 
 // const port = 8000
 app.listen(process.env.PORT || 8000, () => {

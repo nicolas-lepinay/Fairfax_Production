@@ -31,7 +31,7 @@ function App() {
     
         // 🔌 Socket.io :
         useEffect(() => {
-            setSocket(io("ws://localhost:9000"));
+            setSocket(io("ws://https://the-wizards-of-fairfax-sockets.herokuapp.com/"));
         }, [])
     
         useEffect(() => {

@@ -4,7 +4,8 @@
     "description": "YDAYS Project 2021-2022 by Nicolas Lépinay",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon /api/index.js"
+        "start": "node /api/index.js",
+        "heroku-postbuild": "cd client && npm install && npm run build"
     },
     "author": "Nicolas Lépinay",
     "license": "ISC",
@@ -23,7 +24,6 @@
         "nodemailer": "^6.7.3",
         "nodemon": "^2.0.13",
         "path": "^0.12.7",
-        "url": "^0.11.0",
-        "socket.io": "^4.4.0"
+        "url": "^0.11.0"
     }
 }
